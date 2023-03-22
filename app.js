@@ -14,12 +14,16 @@ app.use(
 
 //templating engine
 app.set("views", `${__dirname}/views`);
+console.log(__dirname);
 app.set("view engine", "ejs");
+app.get("/landing",(req,res)=>{
+    return res.render("landing");
+})
 
 //routes
 require("./routes/r-index")(app);
 
-const PORT = process.env.PORT;
+const PORT = process.env.Port;
 app.listen(PORT, () => {
     console.error(`App is Running at http://localhost:${PORT}/toDo`);
 });
