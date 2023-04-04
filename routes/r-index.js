@@ -5,7 +5,7 @@ const passport = require('passport');
 
 module.exports = (app) => {
     app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login'}),
+    passport.authenticate('local', { failureRedirect: '/'}),
     (req, res) => {
         console.log("request body ====>", req.body)
         console.log("user details ====>", req.user)

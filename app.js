@@ -2,7 +2,10 @@ const express = require('express');
 const app = express();
 const passport = require('passport');
 const session = require('express-session');
-require('dotenv').config({})
+const db = require('./models')
+const { seedData } = require('./seeders/seedDB')
+require('dotenv').config({});
+require('./config/passport');
 
 // assets middleware
 app.use(express.static(__dirname + "/assets"));
