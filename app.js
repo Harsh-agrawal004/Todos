@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const passport = require('passport');
+const session = require('express-session');
 require('dotenv').config({})
 
 // assets middleware
@@ -11,6 +13,17 @@ app.use(
         extended: true
     })
 );
+
+//Enable session support
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUnintialized: false
+}));
+
+//Initiaze passport
+app.use(passport.initialize());
+app.use(passport.session())
 
 //templating engine
 app.set("views", `${__dirname}/views`);
