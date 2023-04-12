@@ -3,9 +3,11 @@ const  todos = require('../models/todotable')
 const TODO  = []
 let id =0
 
-const index = (req,res) => {
+const index = async(req,res) => {
     try{
-        return res.render('ToDo')
+        const allTodos = await todos.findAll({where:{userId:req.user.id}})
+        console.log(allTodos);
+        return res.render('ToDo',{allTodos})
     } catch (error){
         console.error(error);
     } 
@@ -38,8 +40,9 @@ const addTodo =  async(req,res) =>{
 
 const deleteAll = async(req,res) => {
     try{
+        const userId = req.body.userId;
         console.log("reached");
-        const deleted = await todos.destroy({where: {}, truncate: true})
+        const deleted = await todos.destroy({where: {userId}, truncate: true})
         return res.json({ message : 'Todo Deleted' , status:true ,toDoAll : deleted})
     } catch(error){
         console.error(error)
@@ -49,9 +52,9 @@ const deleteAll = async(req,res) => {
 const check = async(req,res)=>{
     try{
         console.log("working");
-        const userId = req.body.check
+        const userId = req.body.check;
         console.log(userId);
-        const result = await todos.update({isDone :"true"},{where:{id:NewUserId}})
+        const result = await todos.update({isDone : true},{where:{userId}})
         return res.json({message:"Task completed successfully",status:true,toDocheck:result})
     }catch(error){
         console.log(error)

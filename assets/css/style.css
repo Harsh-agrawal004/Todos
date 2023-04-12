@@ -152,9 +152,20 @@ footer{
 
 }
 
-#checkbox{
+#toDoBody tr td .checkbox{
 	height: 25px;
 	width: 25px ;
 	background-color: white;
 	appearance: auto;
+	
+}
+
+#toDoBody tr td #btn{
+	height: 35px;
+	width: 75px;
+	color: black;
+	background-color: #f2f2f2;
+	border-radius: 25px;
+	margin-left: 30px;
+	
 }

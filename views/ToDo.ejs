@@ -37,7 +37,23 @@
                 </tr>
             </thead>
             <tbody id="toDoBody">
-
+               
+                    <% allTodos.forEach((i)=>{ %>
+                       
+                        <tr>
+                    
+                        <td>
+                            <%= i.id%>
+                        </td>
+                        <td>
+                            <%= i.todo%>
+                        </td>
+                        <td>
+                            <input type=checkbox title = "check" class = "checkbox"  onclick = "update(this)" 
+                                <%= i.isDone?'checked':'' %>>
+                        </td>
+                    <%})%>
+                </tr>
             </tbody>
         </table>
                 </div>

@@ -1,7 +1,9 @@
+const { response } = require("express");
+
 function onSubmitTodo(event) {
     event.preventDefault()
     const todoData = $('#taskform').serializeArray()
-    console.log(todoData);
+    // console.log(todoData);
     const requestBody = todoData.reduce((obj, item) => {
         obj[item.name] = item.value;
         return obj;
@@ -18,7 +20,9 @@ function onSubmitTodo(event) {
             console.log("🚀 ~ file: toDo.js:26 ~ response:", response.toDoObj)
             const row = `<tr><td>${response.toDoObj.id}</td>
             <td>${response.toDoObj.todo}</td>
-            <td><input type=checkbox data-id = "${response.toDoObj.id}" id = "checkbox"  placeholder = "tick" onclick = "update(this)" value=${response.toDoObj.isDone}></td></tr>`
+            <td><input type=checkbox class = "checkbox"  data-id = "${response.toDoObj.id}"   placeholder = "tick" onclick = "update(this)" value=${response.toDoObj.isDone}>
+             <button id="btn" onclick = "updateTodo(this)" date-update = "${response.toDoObj.id}">Update</button></td></tr> `
+     
             $('#toDoBody').append(row)
 
 
@@ -47,7 +51,8 @@ function deleted(event){
 
 function update(_this){
     console.log("working");
-    const check  =$(_this).data('id')
+    const check = $(_this).data('id');
+    console.log(check)
     $.ajax({
         type: "PUT",
         url: "/toDo/check",
@@ -58,4 +63,5 @@ function update(_this){
     })
 }
 
-console.log(todos);
+
+
