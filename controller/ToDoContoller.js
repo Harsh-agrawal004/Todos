@@ -61,13 +61,29 @@ const check = async(req,res)=>{
     }
 }
 
+const update = async(req,res)=>{
+    try{
+       
+        const userId = req.body.update;
+        const updatedresponse = req.body.todo;
+        console.log(userId);
+        const update_await = await todos.findOne({where:{id:userId}})
+        console.log(update_await);
+        return res.json({message:"update task working",status:true,toDoObjectTodo:update_await})
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
 
 
 module.exports = {
     index,
     addTodo,
     deleteAll,
-    check
+    check,
+    update
 } 
 
 
