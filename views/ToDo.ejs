@@ -11,9 +11,9 @@
         <h1><b>TASKS FOR THE DAY</b></h1>
         <br>
         <br>
-            <form id="taskform" onsubmit="onSubmitTodo(event)">
+            <form id="taskform">
                 <input type="text" name="taskinput" id="taskinput" placeholder=" Enter your plan for the day">
-                <input type="submit" id="tasksubmit" value="Add Task">
+               <div id="submitTodo"> <input type="submit" id="tasksubmit" value="Add Task" onclick="onSubmitTodo(event)"></div>
                 
                 <br>
                 <span id="errorMsg"></span>
@@ -39,20 +39,20 @@
             </thead>
             <tbody id="toDoBody">
                
-                    <% allTodos.forEach((i)=>{ %>
+                    <% allTodos.forEach((index)=>{ %>
                        
                         <tr>
                     
                         <td>
-                            <%= i.id%>
+                            <%= index.id%>
                         </td>
                         <td>
-                            <%= i.todo%>
+                            <%= index.todo%>
                         </td>
                         <td>
-                            <input type=checkbox title = "check" class = "checkbox"  onclick = "update(this)" 
-                                <%= i.isDone?'checked':'' %>> 
-                                <button id="btn" onclick = "updateTodo(this)" >Update</button>
+                            <input type=checkbox title = "check" class = "checkbox" data-todoId="<%-index.id%>" onclick = "update(this)" 
+                                <%= index.isDone?'checked':'' %>> 
+                                <button id="btn" data-todoId="<%-index.id%>" onclick = "getTodo(this)" >Update</button>
                         </td>
                     <%})%>
                 </tr>

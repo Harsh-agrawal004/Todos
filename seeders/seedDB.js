@@ -20,13 +20,20 @@ async function seedData() {
 
     const findFirstUser = await user.findOne({ email: 'hagrawal004@gmail.com' })
     if (!findFirstUser) {
-        await user.create({
+        await user.bulkCreate([{
             firstName: 'Harsh',
             lastName: 'Agrawal',
             email: 'hagrawal004@gmail.com',
             password: hashPassword('password'),
             roleId: findAdminRole.id
-        })
+        },
+        {
+            firstName: 'Harsh',
+            lastName: 'Agrawal',
+            email: 'hagrawa04@gmail.com',
+            password: hashPassword('password'),
+            roleId: findAdminRole.id
+        }])
     }
 
 

@@ -15,14 +15,14 @@ const index = async(req,res) => {
 
 const addTodo =  async(req,res) =>{
     try{
-        console.log("dbjbjc");
+        
         const reqData = req.body ;
         const userId = req.user.id ;
-        if(!reqData.taskinput) {
+        if(!reqData.todoData) {
             return res.send('please fill all mandatory fields')
         }
         const insertData = await todos.create({
-            todo : reqData.taskinput,
+            todo : reqData.todoData,
             userId,
             isDone : false
 
@@ -52,29 +52,42 @@ const deleteAll = async(req,res) => {
 const check = async(req,res)=>{
     try{
         console.log("working");
-        const userId = req.body.check;
-        console.log(userId);
-        const result = await todos.update({isDone : true},{where:{userId}})
+        const todoId = req.body.todoId;
+        console.log(todoId);
+        const result = await todos.update({isDone : true},{where:{id:todoId }})
         return res.json({message:"Task completed successfully",status:true,toDocheck:result})
     }catch(error){
         console.log(error)
     }
 }
 
-const update = async(req,res)=>{
+const getSingleToDo = async(req,res)=>{
     try{
-       
-        const userId = req.body.update;
-        const updatedresponse = req.body.todo;
-        console.log(userId);
-        const update_await = await todos.findOne({where:{id:userId}})
-        console.log(update_await);
-        return res.json({message:"update task working",status:true,toDoObjectTodo:update_await})
+        const todoId = req.query.update;
+        console.log(todoId);
+        const getAToDo = await todos.findOne({where:{id:todoId}})
+        console.log(getAToDo);
+        return res.json({message:"update task working",status:true,toDoObj:getAToDo})
     }
     catch(error){
         console.log(error)
     }
 }
+
+
+// const update = async(req,res)=>{
+//     try{
+//         const todoId = req.body.update;
+//         console.log("🚀 ~ file: ToDoContoller.js:80 ~ update ~ todoId:", todoId)
+//         // console.log(todoId);
+//         // const getAToDo = await todos.findOne({where:{id:todoId}})
+//         // console.log(getAToDo);
+//         // return res.json({message:"update task working",status:true,toDoObj:getAToDo})
+//     }
+//     catch(error){
+//         console.log(error)
+//     }
+// }
 
 
 
@@ -83,7 +96,8 @@ module.exports = {
     addTodo,
     deleteAll,
     check,
-    update
+    // update,
+    getSingleToDo
 } 
 
 
