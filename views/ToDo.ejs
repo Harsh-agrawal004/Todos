@@ -51,7 +51,8 @@
                         </td>
                         <td>
                             <input type=checkbox title = "check" class = "checkbox"  onclick = "update(this)" 
-                                <%= i.isDone?'checked':'' %>>
+                                <%= i.isDone?'checked':'' %>> 
+                                <button id="btn" onclick = "updateTodo(this)" >Update</button>
                         </td>
                     <%})%>
                 </tr>

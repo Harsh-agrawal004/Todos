@@ -71,11 +71,18 @@ function updateTodo(_this){
         data:{update},
         success :function(response){
             console.log(response);
-            
+            $('#tasksubmit').val("UPDATE") ;
             console.log("Updation work")
+            $('#taskform').removeAttr('onsubmit').click(function(e){
+                e.preventDefault();
+                console.log($('#taskinput').val());
+                console.log(response.toDoObjectTodo.id);
+                console.log("updation on task format happened!")
+            })
         }
     })
 }
+
 
 
 
