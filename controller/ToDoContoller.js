@@ -74,20 +74,23 @@ const getSingleToDo = async(req,res)=>{
     }
 }
 
+const updatedTask = async(req,res)=>{
+    try{
+        console.log(req.body)
+        const getUpdatedTodoId = req.body.todooo;
+        console.log("response from updated task",getUpdatedTodoId)
+        
+        
+        console.log(getUpdatedTodoId);
+        const updateTodo = await todos.update({todo: req.body.value},{where:{id:getUpdatedTodoId}})
+        return res.json({message:"update on screen working",status:true,updatedObj:updateTodo})
+    }
+    catch(error){
+            console.log(error)
+    }
+}
+    
 
-// const update = async(req,res)=>{
-//     try{
-//         const todoId = req.body.update;
-//         console.log("🚀 ~ file: ToDoContoller.js:80 ~ update ~ todoId:", todoId)
-//         // console.log(todoId);
-//         // const getAToDo = await todos.findOne({where:{id:todoId}})
-//         // console.log(getAToDo);
-//         // return res.json({message:"update task working",status:true,toDoObj:getAToDo})
-//     }
-//     catch(error){
-//         console.log(error)
-//     }
-// }
 
 
 
@@ -96,8 +99,8 @@ module.exports = {
     addTodo,
     deleteAll,
     check,
-    // update,
-    getSingleToDo
+    getSingleToDo,
+    updatedTask,
 } 
 
 
