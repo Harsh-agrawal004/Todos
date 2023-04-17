@@ -76,13 +76,13 @@ function getTodo(_this){
 
 function updatetask(_this){
    
-    const todooo = $(_this).data('todoid');
+    const todoId = $(_this).data('todoid');
     const value = $("#taskinput").val();
-    console.log(todooo);
+    console.log(todoId);
     $.ajax({
         type:"PUT",
         url:"/toDo/updatedTask",
-        data:{todooo,value},
+        data:{todoId,value},
         success:
         function(response){
             console.log(response);

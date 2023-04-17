@@ -77,7 +77,7 @@ const getSingleToDo = async(req,res)=>{
 const updatedTask = async(req,res)=>{
     try{
         console.log(req.body)
-        const getUpdatedTodoId = req.body.todooo;
+        const getUpdatedTodoId = req.body.todoId;
         console.log("response from updated task",getUpdatedTodoId)
         
         
