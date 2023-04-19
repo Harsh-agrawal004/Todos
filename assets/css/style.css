@@ -191,3 +191,17 @@ footer{
 	cursor: pointer;
 	transition: 0.4s;
 }
+.navbar{
+
+	display: flex;
+	justify-content: flex-end !important;
+}
+
+.navbar button{
+	margin-right: 10px;
+	
+}
+.form{
+	display: none;
+	pointer-events: none;
+}

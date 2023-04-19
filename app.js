@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path')
 const app = express();
 const passport = require('passport');
 const session = require('express-session');
@@ -10,6 +11,10 @@ require('dotenv').config({});
 
 // assets middleware
 app.use(express.static(__dirname + "/assets"));
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/min.css')))
+app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')))
+
+
 
 // request body parser middleware
 app.use(

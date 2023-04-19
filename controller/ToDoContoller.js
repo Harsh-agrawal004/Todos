@@ -65,10 +65,12 @@ const getSingleToDo = async(req,res)=>{
     try{
         const todoId = req.query.update;
         console.log(todoId);
+  
         const getAToDo = await todos.findOne({where:{id:todoId}})
+        if(!getAToDo.isDone){
         console.log(getAToDo);
         return res.json({message:"update task working",status:true,toDoObj:getAToDo})
-    }
+    }}
     catch(error){
         console.log(error)
     }

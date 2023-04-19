@@ -91,6 +91,14 @@ function updatetask(_this){
         }
     })
 }
+function user(event){
+    document.querySelector('#header').style.display = "none";
+    document.querySelector('#header').style.pointerEvents = "none";
+     document.querySelector('#main').style.display = "none";
+     document.querySelector('#main').style.pointerEvents = "none";
+     document.querySelector('.form').style.display = "block";
+     document.querySelector('.form').style.pointerEvents = "all";
+}
 
 
 

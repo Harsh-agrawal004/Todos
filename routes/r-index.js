@@ -12,5 +12,13 @@ module.exports = (app) => {
         console.log("user authenticated ====>", req.isAuthenticated())
         return res.redirect('/toDo/');
     });
+
+    app.get('/logout', function  (req, res )
+    {req.logout(function(err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+      });
+    });
+
     app.use('/toDo', rTodo)
 }
