@@ -204,4 +204,9 @@ footer{
 .form{
 	display: none;
 	pointer-events: none;
+	margin-top: 10vh;
+}
+.fa-sharp{
+	width: 100px;
+	height: 100px;
 }

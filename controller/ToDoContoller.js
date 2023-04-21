@@ -1,5 +1,5 @@
 const  todos = require('../models/todotable')
-
+const users= require('../models/users')
 const TODO  = []
 let id =0
 
@@ -91,9 +91,28 @@ const updatedTask = async(req,res)=>{
             console.log(error)
     }
 }
-    
+const userData = async(req,res)=>{
+    try{
+       
+       
+        const ReturnUser = await users.findOne({where:{id:req.user.id}})
+        return res.json({message:"update on screen working",status:true,object1:ReturnUser})
+    }
+    catch(error){
+            console.log(error)
+    }
+}  
 
-
+const changeUserDetails = async(req,res)=>{
+    try{
+        console.log(req.body.newEmail)
+        const UserDetails = await users.update({email:req.body.newEmail ,
+            firstName : req.body.newFname , lastName : req.body.newLname}, {where:{id:req.user.id}})
+            return res.json({message:"user details changed",status:true,object2:UserDetails})
+    } catch(error){
+        console.log(error)
+}
+}
 
 
 module.exports = {
@@ -103,6 +122,8 @@ module.exports = {
     check,
     getSingleToDo,
     updatedTask,
+    userData,
+    changeUserDetails
 } 
 
 

@@ -91,17 +91,55 @@ function updatetask(_this){
         }
     })
 }
-function user(event){
+function user(_this){
     document.querySelector('#header').style.display = "none";
     document.querySelector('#header').style.pointerEvents = "none";
      document.querySelector('#main').style.display = "none";
      document.querySelector('#main').style.pointerEvents = "none";
      document.querySelector('.form').style.display = "block";
      document.querySelector('.form').style.pointerEvents = "all";
+ $(".btn-info").val("HOME");
+    $(".user").html(` <input type="submit" class="btn btn-info" value="HOME" onclick="userToHome(event)">`);
+    const userid = $(_this).data('user');
+    $.ajax({
+        type:"GET",
+        url:"/toDo/userData",
+      
+        data:{userid},
+        success:
+        function(response){
+            console.log(response);
+            $('#exampleInputfirstName').val(response.object1.firstName);
+            $('#exampleInputlastname').val(response.object1.lastName);
+            $('#exampleInputEmail1').val(response.object1.email);
+            $('#exampleInputPassword1').val(response.object1.password);
+        }})
+
 }
 
+function userToHome(event){
+    
+    window.location.reload();
+}
+function Submituser(event){
+    event.preventDefault();
+    const newEmail = $('#exampleInputEmail1').val();
+    const newFname =  $('#exampleInputfirstName').val();
+    const newLname =  $('#exampleInputlastname').val();
+    // const newPass =  $('#exampleInputPassword1').val();
+   
+    $.ajax({
+        type:"PUT",
+        url:"/toDo/changeUserDetails",
 
-
+        data:{newEmail,newFname,newLname},
+        success:
+        function(response){
+            console.log(response);
+            
+        }
+        })
+}
 
 
 
